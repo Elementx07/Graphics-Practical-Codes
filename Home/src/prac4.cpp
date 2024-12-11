@@ -7,15 +7,8 @@ Program to draw 2-D object and perform following basic transformations,
 a) Scaling b) Translation c) Rotation. Apply the concept of operator overloading.
 */
 
-class Shape{
-    public:
-    virtual void draw() = 0;
-    virtual void scale(float) = 0;
-    virtual void translate(int, int) = 0;
-    virtual void rotate(int) = 0;
-};
 
-class Rec : public Shape{
+class Rec{
     int x1, y1, x2, y2;
     public:
     Rec(int x1, int y1, int x2, int y2){
@@ -35,8 +28,8 @@ class Rec : public Shape{
     }
 
     //overload + operator to translate
-    Rec operator+(int tx, int ty){
-        return Rec(x1 + tx, y1 + ty, x2 + tx, y2 + ty);
+    Rec operator+(int t){
+        return Rec(x1 + t, y1 + t, x2 + t, y2 + t);
     }
 
     //overload % operator to rotate
@@ -62,18 +55,18 @@ int main(){
 
 
     cleardevice();
-    r.translate(100, -50);
+    r = r + 50; //translate by 50 units, call overloaded + operator
     r.draw();
     getch();
 
 
     cleardevice();
-    r.scale(1.5);
+    r = r * 2; //scale by 2, call overloaded * operator
     r.draw();
     getch();
 
     cleardevice();
-    r.rotate(60);
+    r = r % 60; //rotate by 60 degrees, call overloaded % operator
     r.draw();
     getch();
 
