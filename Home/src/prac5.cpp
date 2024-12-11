@@ -4,14 +4,11 @@ using namespace std;
 /*
 Program to generate Hibert Curve using the concept of fractals
 Hilbert Curve:--
-    1. Start with a square of side length 2^n.
-    2. Divide the square into 4 equal parts.
-    3. Draw a curve in the following order:--
-        a. Bottom left part
-        b. Top left part
-        c. Top right part
-        d. Bottom right part
-    4. Repeat the above steps for each part.
+    1. Define a starting point and a direction.
+    2. Divide the space into four quadrants.
+    3. Recursively draw the curve in each quadrant.
+    4. Move the cursor to the next quadrant.
+    5. Repeat the process until the desired level of recursion is reached.
 */
 
 // Function to move the cursor
