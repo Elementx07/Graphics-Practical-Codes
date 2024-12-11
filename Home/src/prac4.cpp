@@ -29,28 +29,26 @@ class Rec : public Shape{
         rectangle(x1, y1, x2, y2);
     }
 
-    void scale(float s){
-        x1 *= s;
-        y1 *= s;
-        x2 *= s;
-        y2 *= s;
+    //overload * operator to scale
+    Rec operator*(float s){
+        return Rec(x1 * s, y1 * s, x2 * s, y2 * s);
     }
 
-    void translate(int dx, int dy){
-        x1 += dx;
-        y1 += dy;
-        x2 += dx;
-        y2 += dy;
+    //overload + operator to translate
+    Rec operator+(int tx, int ty){
+        return Rec(x1 + tx, y1 + ty, x2 + tx, y2 + ty);
     }
 
-    void rotate(int angle){
+    //overload % operator to rotate
+    Rec operator%(int angle){
         float theta = angle * 3.14159 / 180;
         int x = (x1 + x2) / 2;
         int y = (y1 + y2) / 2;
-        x1 = x + (x1 - x) * cos(theta) - (y1 - y) * sin(theta);
-        y1 = y + (x1 - x) * sin(theta) + (y1 - y) * cos(theta);
-        x2 = x + (x2 - x) * cos(theta) - (y2 - y) * sin(theta);
-        y2 = y + (x2 - x) * sin(theta) + (y2 - y) * cos(theta);
+        int x1 = x + (x1 - x) * cos(theta) - (y1 - y) * sin(theta);
+        int y1 = y + (x1 - x) * sin(theta) + (y1 - y) * cos(theta);
+        int x2 = x + (x2 - x) * cos(theta) - (y2 - y) * sin(theta);
+        int y2 = y + (x2 - x) * sin(theta) + (y2 - y) * cos(theta);
+        return Rec(x1, y1, x2, y2);
     }
 };
 
