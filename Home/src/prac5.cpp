@@ -17,16 +17,12 @@ Hilbert Curve:--
 // Function to move the cursor
 void move(int &x, int &y, int dir, int len)
 {
-    if (dir == 1)
-        y -= len; // Move up
-    else if (dir == 2)
-        x += len; // Move right
-    else if (dir == 3)
-        y += len; // Move down
-    else
-        x -= len; // Move left
-
-
+    switch(dir){
+        case 1: y -= len; break;
+        case 2: x += len; break;
+        case 3: y += len; break;
+        case 4: x -= len; break;
+    }
     lineto(x, y); // Draw the line
 }
 
