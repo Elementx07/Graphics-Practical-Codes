@@ -8,21 +8,28 @@ Program to  to implement bouncing ball using sine wave form. Apply the concept o
 
 void drawBall(int x, int y, int r){
     circle(x, y, r);
-    floodfill(x, y, WHITE);
+    floodfill(x, y, WHITE);   
 }
 
-void sineWave(int x, int y, int r){
+void drawWave(int x, int y, int r){
     for (int i = 0; i < 360; i++){
         int x1 = x + i;
         int y1 = y + r * sin(i * 3.14159 / 180);
-
         putpixel(x1, y1, YELLOW);
-        putpixel(x1, y1 + 1, YELLOW);
-        putpixel(x1, y1 - 1, YELLOW);
+    }
+}
 
-        drawBall(x1, y1, 20);
-        delay(10);
-        cleardevice();
+void sineWave(int x, int y, int r){
+    while(true){
+        for (int i = 0; i < 360; i++){
+            int x1 = x + i;
+            int y1 = y + r * sin(i * 3.14159 / 180);
+
+            drawWave(x, y, r);
+            drawBall(x1, y1, 20);
+            delay(10);
+            cleardevice();
+        }
     }
 }
 
@@ -30,7 +37,7 @@ int main(){
     int gd = DETECT, gm;
     initgraph(&gd, &gm, NULL);
 
-    sineWave(100, 100, 40);
+    sineWave(0, 100, 60);
 
     getch();
     closegraph();
