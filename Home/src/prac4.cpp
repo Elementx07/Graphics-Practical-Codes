@@ -76,24 +76,24 @@ int main()
     int gd = DETECT, gm;
     initgraph(&gd, &gm, NULL);
 
-    vector <int> p = {100, 100, 200, 100, 200, 200, 100, 200};
+    //vector for house as a polygon
+    vector <int> p = {100, 100, 200, 100, 200, 200, 150, 250, 100, 200};
     Object r(p);
     r.draw();
     getch();
 
     cleardevice();
+    r = r % 30; // rotate by 30 degrees, call overloaded % operator
+    r.draw();
+    getch();
+    
+    cleardevice();
     r = r + 50; // translate by 50 units, call overloaded + operator
     r.draw();
     getch();
 
-
     cleardevice();
     r = r * 2; // scale by 2, call overloaded * operator
-    r.draw();
-    getch();
-
-    cleardevice();
-    r = r % 30; // rotate by 30 degrees, call overloaded % operator
     r.draw();
     getch();
 
