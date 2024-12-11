@@ -16,14 +16,12 @@ This repository contains implementations of various graphics algorithms using C+
 ### Build
 
 ```sh
-# Build the project
 g++ Home/src/prac1.cpp -o Home/build/prac1.exe -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
 ```
 
 ### Run
 
 ```sh
-# Run the executable
 Home/build/prac1.exe
 ```
 
