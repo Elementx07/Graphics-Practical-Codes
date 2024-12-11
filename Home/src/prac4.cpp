@@ -1,5 +1,6 @@
 #include<iostream>
 #include<graphics.h>
+#include<math.h>
 using namespace std;
 /*
 Program to draw 2-D object and perform following basic transformations, 
@@ -14,10 +15,10 @@ class Shape{
     virtual void rotate(int) = 0;
 };
 
-class Rectangle : public Shape{
+class Rec : public Shape{
     int x1, y1, x2, y2;
     public:
-    Rectangle(int x1, int y1, int x2, int y2){
+    Rec(int x1, int y1, int x2, int y2){
         this->x1 = x1;
         this->y1 = y1;
         this->x2 = x2;
@@ -57,23 +58,27 @@ int main(){
     int gd = DETECT, gm;
     initgraph(&gd, &gm, NULL);
 
-    Rectangle r(100, 100, 200, 200);
+    Rec r(100, 100, 200, 250);
     r.draw();
     getch();
 
+
+    cleardevice();
+    r.translate(100, -50);
+    r.draw();
+    getch();
+
+
+    cleardevice();
     r.scale(1.5);
     r.draw();
     getch();
 
-    r.translate(50, 50);
+    cleardevice();
+    r.rotate(60);
     r.draw();
     getch();
 
-    r.rotate(45);
-    r.draw();
-    getch();
-
-    getch();
     closegraph();
     return 0;
 }
