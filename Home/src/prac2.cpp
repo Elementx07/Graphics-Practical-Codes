@@ -40,9 +40,10 @@ void clipping(double x1, double y1, double x2, double y2){
     int code2 = region_codes(x2, y2);
 
     bool accept = false;
-
+    cleardevice();
+    rectangle(x_min, y_min, x_max, y_max);
     line(x1, y1, x2, y2);
-    
+
     while (true) {
         if ((code1 == 0) && (code2 == 0)) {
             // If both endpoints lie within rectangle
