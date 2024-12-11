@@ -41,6 +41,7 @@ void hilbert(int r, int d, int l, int u, int i, int h, int &x, int &y)
         hilbert(r, d, l, u, i, h, x, y); // 3rd quadrant
         move(x, y, l, h);
         hilbert(u, l, d, r, i, h, x, y); // 4th quadrant
+        delay(100);//delay to show step by step drawing
     }
 }
 
@@ -53,10 +54,9 @@ int main()
     y = y0;
 
 
-    initgraph(&gd, &gm, NULL);       // Initialize the graphics window
+    initgraph(&gd, &gm, NULL);       
     moveto(x, y);                    // Move to the starting point
-    hilbert(r, d, l, u, n, h, x, y); // Draw the Hilbert curve
-    delay(100000);                   // Wait for some time
+    hilbert(r, d, l, u, n, h, x, y); // Draw the Hilbert curve recusively 
     getch();      // Wait for a key press
     closegraph(); // Close the graphics window
     return 0;
