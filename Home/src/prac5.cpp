@@ -1,5 +1,5 @@
-#include<iostream>
-#include<graphics.h>
+#include <iostream>
+#include <graphics.h>
 using namespace std;
 /*
 Program to generate Hibert Curve using the concept of fractals
@@ -14,49 +14,54 @@ Hilbert Curve:--
     4. Repeat the above steps for each part.
 */
 
-//Function to move the cursor
-void move(int &x, int &y, int dir, int len){
-    switch(dir){
-        case 0: y += len; break;
-        case 1: x += len; break;
-        case 2: y -= len; break;
-        case 3: x -= len; break;
-    }
-    lineto(x, y);   
+// Function to move the cursor
+void move(int &x, int &y, int dir, int len)
+{
+    if (dir == 1)
+        y -= len; // Move up
+    else if (dir == 2)
+        x += len; // Move right
+    else if (dir == 3)
+        y += len; // Move down
+    else
+        x -= len; // Move left
+
+
+    lineto(x, y); // Draw the line
 }
 
-//Function to draw the Hilbert Curve 
-void hilbert(int r, int d, int l, int u, int i, int h, int &x, int &y) {
-    if (i > 0) {
+// Function to draw the Hilbert Curve
+void hilbert(int r, int d, int l, int u, int i, int h, int &x, int &y)
+{
+    if (i > 0)
+    {
         i--; // Decrement recursion level
-        
+
         // Draw smaller curves and move as per the Hilbert curve logic
         hilbert(d, r, u, l, i, h, x, y); // 1st quadrant
-        move(r, h, x, y);                // Move in the "right" direction
+        move(x, y, r, h);
         hilbert(r, d, l, u, i, h, x, y); // 2nd quadrant
-        move(d, h, x, y);                // Move in the "down" direction
+        move(x, y, d, h);
         hilbert(r, d, l, u, i, h, x, y); // 3rd quadrant
-        move(l, h, x, y);                // Move in the "left" direction
+        move(x, y, l, h);
         hilbert(u, l, d, r, i, h, x, y); // 4th quadrant
     }
 }
 
-
-int main(){
+int main()
+{
     int gd = DETECT, gm;
-    int n, x1, y1;
-    int x0 = 50, y0 = 150;   // Starting point of the curve
-    int x = x0, y = y0;      // Initial coordinates
-    int h = 10;              // Step size
-    int r = 2, d = 3, l = 4, u = 1; // Directions (right, down, left, up)
+    int n = 4;
+    int x0 = 50, y0 = 150, x, y, h = 10, r = 2, d = 3, l = 4, u = 1;
+    x = x0;
+    y = y0;
 
-    cout << "\nGive the value of n: ";
-    cin >> n;
 
-    moveto(x, y);             // Move to the starting point
+    initgraph(&gd, &gm, NULL);       // Initialize the graphics window
+    moveto(x, y);                    // Move to the starting point
     hilbert(r, d, l, u, n, h, x, y); // Draw the Hilbert curve
-
-    delay(100); // Pause to view the result
+    delay(100000);                   // Wait for some time
+    getch();      // Wait for a key press
     closegraph(); // Close the graphics window
     return 0;
 }
